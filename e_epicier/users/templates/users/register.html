@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{%block content%}
+
+<div class="mt-5 container" style="width: 50%;">
+    <h2>Register</h2>
+
+{% comment %} Show errors {% endcomment %}
+    {%for err in form%}
+        {%if err.errors%}
+            <div class="alert alert-danger" role="alert">
+                {{err.errors}} 
+            </div>
+        {%endif%}
+    {%endfor%}
+
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputUser" class="form-label">Username</label>
+              {{form.username}}
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              {{form.email}}
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                {{form.password1}}
+            </div>
+      
+            <div class="mb-3">
+                <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+                {{form.password2}}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        
+ </div>   
+
+{%endblock content%}
+
