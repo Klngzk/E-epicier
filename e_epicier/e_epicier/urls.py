@@ -16,8 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from users import views as user_views
+from clients import views as client_views
 urlpatterns = [
     path('', user_views.home,name ='home'),
+     path('clients/', client_views.clientView,name ='client-view'),
+    path('clients/add/', client_views.clientAdd,name ='client-add'),
+    path('clients/edit/<int:id>/', client_views.clientEdit,name ='client-edit'),
+    path('clients/remove/<int:id>/', client_views.clientDelete,name ='client-remove'),
+    path('clients/<int:id>/', client_views.clientDetail,name ='client-detail'),
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name ='register'),
     path('login/', user_views.loginpage, name ='login'),

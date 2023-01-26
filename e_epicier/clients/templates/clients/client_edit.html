@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{%block content%}
+<div class="mt-5 container" style="width: 50%;">
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputUser" class="form-label">First Name</label>
+          {{form.firstname}}
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Last Name</label>
+          {{form.lastname}}
+        </div>
+
+        <div class="mb-3">
+            <label  class="form-label">Numero</label>
+            {{form.numero}}
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword2" class="form-label">CIN</label>
+            {{form.cin}}
+        </div>
+
+        <button type="submit" class="btn btn-warning">Update</button>
+      </form>
+
+</div>
+{%endblock content%}
