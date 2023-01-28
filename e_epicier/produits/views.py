@@ -1,42 +1,42 @@
 from django.shortcuts import render,redirect
-from .forms import ClientForm
-from .models import Client  
+from .forms import ProduitForm
+from .models import Produit 
 from django.contrib import messages
 
 # Create your views here.
 
-def clientView(request):
-    clients = Client.objects.all()
-    return render(request, 'clients/client_view.html',{'clients':clients})
+def produitView(request):
+    produits = Produit.objects.all()
+    return render(request, 'produits/produit_view.html',{'produits':produits})
 
-def clientDetail(request,id):
-    client = Client.objects.get(id=id)
-    return render(request, 'clients/client_detail.html',{'client':client})
+def produitDetail(request,id):
+    produit = Produit.objects.get(id=id)
+    return render(request, 'produits/produit_detail.html',{'produit':produit})
 
-def clientEdit(request,id):
-    client = Client.objects.get(id=id)
+def produitEdit(request,id):
+    produit = Produit.objects.get(id=id)
     if request.method == 'POST':
-        form = ClientForm(request.POST,instance = client)
+        form = ProduitForm(request.POST,instance = produit)
         if form.is_valid():
             form.save()
-            messages.success(request, "Client has been Updated")
-            return redirect('client-view')
+            messages.success(request, "Produit has been Updated")
+            return redirect('produit-view')
     else:
-        form = ClientForm(instance = client)
-    return render(request, 'clients/client_edit.html',{'form':form})
+        form = ProduitForm(instance = produit)
+    return render(request, 'produits/produit_edit.html',{'form':form})
 
-def clientAdd(request):
+def produitAdd(request):
     if request.method == 'POST':
-        form = ClientForm(request.POST)
+        form = ProduitForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Client has been added")
-            return redirect('client-view')
+            messages.success(request, "Produit has been added")
+            return redirect('produit-view')
     else:
-        form = ClientForm()
-    return render(request,'clients/client_add.html',{'form':form})
+        form = ProduitForm()
+    return render(request,'produits/produit_add.html',{'form':form})
 
-def clientDelete(request,id):
-    client = Client.objects.get(id=id)
-    client.delete()
-    return redirect('client-view')
+def produitDelete(request,id):
+    produit = Produit.objects.get(id=id)
+    produit.delete()
+    return redirect('produit-view')
