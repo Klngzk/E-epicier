@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{%block content%}
+<form method="POST">
+  {% csrf_token %}
+<div class='container'>
+
+    <table id="product-table" class = "table">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for produit in produits %}
+          <tr>
+            <td>{{ produit.name }}</td>
+            <td>{{ produit.prix }}</td>
+            <td>
+              <input name="quantity_{{ produit.id }}" type="number" min ='0' value="0" onchange="calculateTotal(this)">
+            </td>
+            <td><span name='total' class="total">0</span></td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+      
+      <p>
+        Total: <input type="text" id="grand-total" value="" disabled>
+      </p>
+      <button type="submit">Save</button>
+    </form>
+      
+      <script>
+        function calculateTotal(input) {
+          var row = input.parentElement.parentElement;
+          var price = row.querySelectorAll('td')[1].innerText;
+          var total = price * input.value;
+          row.querySelector('.total').innerText = total;
+      
+          var grandTotal = 0;
+          var totals = document.querySelectorAll('.total');
+          for (var i = 0; i < totals.length; i++) {
+            grandTotal += parseFloat(totals[i].innerText);
+          }
+          document.querySelector('#grand-total').value = grandTotal;
+        }
+      </script>
+      
+
+
+
+
+</div>
+{%endblock content%}

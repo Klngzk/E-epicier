@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{%block content%}
+<div class="mt-5 container" style="width: 50%;">
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputUser" class="form-label">Titre</label>
+          {{form.titre}}
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Client</label>
+          {{form.client}}
+          </select>
+        </div> 
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">To Pay</label>
+            {{form.to_pay}}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Payed</label>
+            {{form.payed}}
+            </select>
+          </div>
+        <button type="submit" class="btn btn-warning">Update</button>
+      </form>
+
+
+      <form method='POST' name='pay'>
+        {% csrf_token %}
+
+      <div class="input-group mb-3">
+        <button class="btn btn-outline-success" type="submit" id="button-addon1">Pay</button>
+        <input type="number" name='pay' class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" step="0.01">
+      </div>
+    </form>
+
+
+  <a href={% url 'credit-produit' id%}><button type="submit" class="btn btn-info">Add Product</button></a>
+
+        <h2>Order History</h2>
+        <table id="product-table" class = "table">
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for produit in produits %}
+              <tr>
+                <td>{{ produit.produit.name }}</td>
+                <td>{{ produit.produit.prix }}</td>
+                
+                <td name="quantity_{{ produit.produit.id }}">{{produit.qnt}}</td>
+                
+                <td><span name='total' class="total">{{ produit.total }}</span></td>
+              </tr>
+              {% endfor %}
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id='grand-total'></td>
+              </tr>
+            </tbody>
+          </table>
+
+
+</div>
+<script>
+        var grandTotal = 0;
+        var totals = document.querySelectorAll('.total');
+        for (var i = 0; i < totals.length; i++) {
+            grandTotal += parseFloat(totals[i].innerText);
+        }
+        document.querySelector('#grand-total').innerText = grandTotal;
+</script>
+          {%endblock content%}

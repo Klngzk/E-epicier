@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+<div class='container'>
+  <a href={% url 'credit-add'%}><button type="button" class="btn btn-primary">Add</button></a>
+  
+  
+     
+  
+  
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Client</th>
+        <th scope="col">View/Update/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for credit in credits%}
+      <tr>
+          <td> {{credit.titre}}</td>
+          <td> {{credit.client}}</td>
+          <td>
+              <a href = {% url 'credit-detail' credit.id%}><button type="button" class="btn btn-info">View</button></a>
+              <a href = {% url 'credit-edit' credit.id%}><button type="button" class="btn btn-warning">Edit</button></a>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Remove</button>
+              
+        <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href = {% url 'credit-remove' credit.id%}><button type="button" class="btn btn-danger">Yes</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+          </td> 
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  </div>
+
+{%endblock content%}

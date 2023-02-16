@@ -31,6 +31,10 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'produit-view'%}">Produits</a>
                   </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'credit-view'%}">Credit</a>
+                  </li>
         {% comment %} if user is logged in don't show login and register links {% endcomment %}
             {%if user.is_authenticated %}
                 <li class="nav-item">

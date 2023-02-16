@@ -6,7 +6,7 @@ from django.contrib import messages
 # Create your views here.
 
 def clientView(request):
-    clients = Client.objects.all()
+    clients = Client.objects.filter(user=request.user).values
     return render(request, 'clients/client_view.html',{'clients':clients})
 
 def clientDetail(request,id):
@@ -29,7 +29,9 @@ def clientAdd(request):
     if request.method == 'POST':
         form = ClientForm(request.POST)
         if form.is_valid():
-            form.save()
+            i = form.save(commit=False)
+            i.user = request.user
+            i.save()
             messages.success(request, "Client has been added")
             return redirect('client-view')
     else:

@@ -18,6 +18,7 @@ from django.urls import path
 from users import views as user_views
 from clients import views as client_views
 from produits import views as produit_views
+from credit import views as credit_views
 urlpatterns = [
     path('', user_views.home,name ='home'),
     path('clients/', client_views.clientView,name ='client-view'),
@@ -31,7 +32,19 @@ urlpatterns = [
     path('produits/edit/<int:id>/', produit_views.produitEdit,name ='produit-edit'),
     path('produits/remove/<int:id>/', produit_views.produitDelete,name ='produit-remove'),
     path('produits/<int:id>/', produit_views.produitDetail,name ='produit-detail'),
-    
+
+    path('credits/', credit_views.creditView,name ='credit-view'),
+    path('credits/add/', credit_views.creditAdd,name ='credit-add'),
+    path('credits/edit/<int:id>/', credit_views.creditEdit,name ='credit-edit'),
+    path('credits/remove/<int:id>/', credit_views.creditDelete,name ='credit-remove'),
+    path('credits/<int:id>/', credit_views.creditDetail,name ='credit-detail'),
+
+    path('credits/produits/<int:id>/', credit_views.creditProduits,name ='credit-produit'),
+
+    path('credits/pay/<int:id>/', credit_views.creditPay,name ='credit-pay'),
+
+
+
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name ='register'),
     path('login/', user_views.loginpage, name ='login'),

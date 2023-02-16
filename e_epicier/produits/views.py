@@ -6,7 +6,7 @@ from django.contrib import messages
 # Create your views here.
 
 def produitView(request):
-    produits = Produit.objects.all()
+    produits = Produit.objects.filter(user=request.user).values
     return render(request, 'produits/produit_view.html',{'produits':produits})
 
 def produitDetail(request,id):
@@ -29,7 +29,9 @@ def produitAdd(request):
     if request.method == 'POST':
         form = ProduitForm(request.POST)
         if form.is_valid():
-            form.save()
+            i = form.save(commit=False)
+            i.user = request.user
+            i.save()
             messages.success(request, "Produit has been added")
             return redirect('produit-view')
     else:
