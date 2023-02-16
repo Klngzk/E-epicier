@@ -6,30 +6,16 @@ from django.contrib import messages
 
 import decimal
 # Create your views here.
-def creditView(request):
-    credits = Credit.objects.filter(user=request.user)
-    return render(request, 'credits/credit_view.html',{'credits':credits})
-    # qnt_produit_form = Produit_QntForm()
-    # if request.method == 'POST':
-    #     form = CreditForm(request.POST)
-    #     if form.is_valid():
-    #         credit = form.save(commit=False)
-    #         credit.save()
-    #         produits = request.POST.getlist('produits')
-    #         for produit_id in produits:
-    #             Credit.objects.create(credit=credit, produit_id=produit_id, qnt=request.POST[f'qnt_{produit_id}'])
-    #         return redirect('credit-view')
-    # else:
-    #     form = CreditForm()
-    # return render(request, 'credit/credit.html', {'form': form, 'qnt_produit_form': qnt_produit_form})
+
+
 def creditAdd(request):
     if request.method == 'POST':
         form = CreditForm(request.POST)
         if form.is_valid():
             i = form.save(commit=False)
             i.user = request.user
-            i.to_pay=0
-            i.payed =0
+            i.to_pay=0.00
+            i.payed =0.00
             i.save()
             id_credit = i.id 
             return redirect('credit-produit', id= id_credit)
@@ -56,7 +42,8 @@ def creditEdit(request,id):
 
 
 def creditDetail(request):
-    pass
+    credits = Credit.objects.filter(user=request.user)
+
 
 def creditDelete(request,id):
     credit = Credit.objects.get(id=id)
@@ -76,8 +63,8 @@ def creditProduits(request,id):
                 selected_product.save()
         credit.to_pay +=total
         credit.save()
-        return redirect('home')
-    return render(request,'produits/produit_add.html',{'produits':produits})
+        return creditView(request)
+    return render(request,'produits/produit_credit_add.html',{'produits':produits})
 
 
 def creditPay(request,id):
@@ -92,3 +79,6 @@ def creditPay(request,id):
     credit.save()
     return messages.success(request,"Good")
 
+def creditView(request):
+    credits = Credit.objects.filter(user=request.user)
+    return render(request, 'credits/credit_view.html',{'credits':credits})

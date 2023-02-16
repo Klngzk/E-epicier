@@ -33,7 +33,6 @@ urlpatterns = [
     path('produits/remove/<int:id>/', produit_views.produitDelete,name ='produit-remove'),
     path('produits/<int:id>/', produit_views.produitDetail,name ='produit-detail'),
 
-    path('credits/', credit_views.creditView,name ='credit-view'),
     path('credits/add/', credit_views.creditAdd,name ='credit-add'),
     path('credits/edit/<int:id>/', credit_views.creditEdit,name ='credit-edit'),
     path('credits/remove/<int:id>/', credit_views.creditDelete,name ='credit-remove'),
@@ -42,6 +41,7 @@ urlpatterns = [
     path('credits/produits/<int:id>/', credit_views.creditProduits,name ='credit-produit'),
 
     path('credits/pay/<int:id>/', credit_views.creditPay,name ='credit-pay'),
+    path('credits/', credit_views.creditView,name ='credit-view'),
 
 
 

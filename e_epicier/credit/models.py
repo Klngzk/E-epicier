@@ -12,8 +12,8 @@ class Credit(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,default=1)
     date = models.DateField(auto_now_add=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE,default=1)
-    to_pay =models.DecimalField(max_digits=9, decimal_places=2)
-    payed = models.DecimalField(max_digits=9, decimal_places=2)
+    to_pay =models.DecimalField(max_digits=9, decimal_places=2,default=0)
+    payed = models.DecimalField(max_digits=9, decimal_places=2,default=0)
 
 
 
