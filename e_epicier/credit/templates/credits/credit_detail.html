@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{%block content%}
+<div class="mt-5 container" style="width: 50%;">
+    
+    <div class="list-group">
+        <div class="list-group-item list-group-item-action active" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Titre</h5>
+          </div>
+          <p class="mb-1">{{credits.titre}}</p>
+        </div>
+        <a href={% url 'client-detail' credits.client.id%} class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Client</h5>
+          </div>
+          <p class="mb-1">{{credits.client}}</p>
+        </a>
+        <div class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">To pay</h5>
+          </div>
+          <p class="mb-1">{{credits.to_pay}}</p>
+        </div>
+        <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Payed</h5>
+        </div>
+        <p class="mb-1">{{credits.payed}}</p>
+      </div>
+      </div>
+
+
+    <h2>Order History</h2>
+        <table id="product-table" class = "table">
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for produit in produits %}
+              <tr>
+                <td>{{ produit.produit.name }}</td>
+                <td>{{ produit.produit.prix }}</td>
+                
+                <td name="quantity_{{ produit.produit.id }}">{{produit.qnt}}</td>
+                
+                <td><span name='total' class="total">{{ produit.total }}</span></td>
+              </tr>
+              {% endfor %}
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td id='grand-total'></td>
+              </tr>
+            </tbody>
+          </table>
+
+</div>
+{%endblock content%}

@@ -14,6 +14,7 @@ class Credit(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE,default=1)
     to_pay =models.DecimalField(max_digits=9, decimal_places=2,default=0)
     payed = models.DecimalField(max_digits=9, decimal_places=2,default=0)
+    etat = models.BooleanField(default=0)
 
 
 

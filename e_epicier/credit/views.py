@@ -41,8 +41,10 @@ def creditEdit(request,id):
     return render(request,'credits/credit_edit.html',{'form':form,'produits':produits, 'id':id})
 
 
-def creditDetail(request):
-    credits = Credit.objects.filter(user=request.user)
+def creditDetail(request,id):
+    credits = Credit.objects.get(id=id)
+    produits = Qnt_Produit.objects.filter(credit=id)
+    return render(request, 'credits/credit_detail.html',{'credits':credits,'produits':produits})
 
 
 def creditDelete(request,id):
