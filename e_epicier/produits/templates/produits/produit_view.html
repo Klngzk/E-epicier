@@ -1,31 +1,38 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {%block content%}
-<div class='container'>
-<a href={% url 'produit-add'%}><button type="button" class="btn btn-primary">Add</button></a>
+<div class='container' style="margin-top: 150px;">
 
-
+<div class="table-title mx-auto">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Manage <b>Products</b></h2>
+    </div>
+    <div class="col-lg-6">
+      <a href="{% url 'produit-add'%}" class="btn btn-success" data-toggle="modal"><i class="fa-solid fa-plus"></i> <span>Add New Product</span></a>
+    </div>
+  </div>
+</div>
    
 
 
 
-<table class="table">
+<table class="table table-hover table-view mx-auto">
   <thead>
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Price</th>
-      <th scope="col">View/Update/Delete</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     {%for produit in produits%}
     <tr>
-        <td> {{produit.name}}</td>
-        <td> {{produit.prix}}</td>
+        <td onclick="window.location= '{% url 'produit-detail' produit.id%}'"> {{produit.name}}</td>
+        <td onclick="window.location= '{% url 'produit-detail' produit.id%}'"> {{produit.prix}}DH</td>
         <td>
-            <a href = {% url 'produit-detail' produit.id%}><button type="button" class="btn btn-info">View</button></a>
-            <a href = {% url 'produit-edit' produit.id%}><button type="button" class="btn btn-warning">Edit</button></a>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Remove</button>
+            <a href = {% url 'produit-edit' produit.id%}><button type="button" class="btn btn-warning"><i class="fa-solid fa-pen"></i></button></a>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash"></i></button>
             
       <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

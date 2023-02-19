@@ -1,11 +1,10 @@
-{% extends "base.html" %}
-
+{% extends "index.html" %}
 {%block content%}
 <form method="POST">
   {% csrf_token %}
-<div class='container'>
-
-    <table id="product-table" class = "table">
+<div class='container' style="width: 50%;">
+  <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
+    <table id="productTable" class = "table">
         <thead>
           <tr>
             <th>Product Name</th>
@@ -20,7 +19,7 @@
             <td>{{ produit.name }}</td>
             <td>{{ produit.prix }}</td>
             <td>
-              <input name="quantity_{{ produit.id }}" type="number" min ='0' value="0" onchange="calculateTotal(this)">
+              <input name="quantity_{{ produit.id }}" type="number" class="form-control" min ='0' value="0" onchange="calculateTotal(this)">
             </td>
             <td><span name='total' class="total">0</span></td>
           </tr>
@@ -30,9 +29,9 @@
       </table>
       
       <p>
-        Total: <input type="text" id="grand-total" value="" disabled>
+        Total: <input type="text" class="form-control"id="grand-total" value="" disabled>
       </p>
-      <button type="submit">Save</button>
+      <button class='btn btn-success' type="submit">Save</button>
     </form>
       
       <script>
@@ -49,11 +48,12 @@
           }
           document.querySelector('#grand-total').value = grandTotal;
         }
+
+
+
       </script>
       
-
-
-
-
 </div>
+
+
 {%endblock content%}

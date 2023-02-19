@@ -1,0 +1,10 @@
+input.form-control:focus {
+    border-color: inherit;
+    box-shadow: none;
+}
+.form-check-input:checked{
+    background-color: #20c997;
+    border-color: #20c997;
+  }
+
+

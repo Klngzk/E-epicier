@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {%block content%}
 <div class="mt-5 container" style="width: 50%;">
-    
+
     <div class="list-group">
         <div class="list-group-item list-group-item-action active" aria-current="true">
           <div class="d-flex w-100 justify-content-between">
@@ -10,12 +10,22 @@
           </div>
           <p class="mb-1">{{credits.titre}}</p>
         </div>
+        {%if credits.client.user == user%}
         <a href={% url 'client-detail' credits.client.id%} class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Client</h5>
-          </div>
-          <p class="mb-1">{{credits.client}}</p>
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Client</h5>
+            </div>
+            <p class="mb-1">{{credits.client}}</p>
         </a>
+        {%else%}
+        <div class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Client</h5>
+            </div>
+            <p class="mb-1">{{credits.client}}</p>
+        </div>
+        {%endif%}
+          
         <div class="list-group-item list-group-item-action">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">To pay</h5>
@@ -30,9 +40,10 @@
       </div>
       </div>
 
+  <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
 
     <h2>Order History</h2>
-        <table id="product-table" class = "table">
+        <table id="productTable" class = "table">
             <thead>
               <tr>
                 <th>Product Name</th>

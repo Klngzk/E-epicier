@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="mt-5 container" style="width: 50%;">
+
+  <form method="POST">
+    {% csrf_token %}
+    <label for="credit_id">Credit Code:</label>
+    <input type="text" class ='form-control'name="credit_id" id="credit_id">
+    <button type="submit" class='btn btn-success m-3'>Find</button>
+  </form>
+</div>
+{% endblock %}

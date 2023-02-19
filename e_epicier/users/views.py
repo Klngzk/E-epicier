@@ -45,3 +45,14 @@ def loginpage(request):
 def logoutpage(request):
     logout(request)
     return redirect('login')
+#pages
+def aboutUs(request):
+    return redirect('/#about')
+def services(request):
+    return redirect('/#service')
+def contact_us(request):
+    return redirect('/#contact')
+def manage(request):
+    return render(request,'manage.html')
+
+  

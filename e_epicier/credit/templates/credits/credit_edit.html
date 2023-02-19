@@ -1,6 +1,13 @@
-{% extends "base.html" %}
+
+{% extends "index.html" %}
+{% load static %}
+
+{%block links%}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{%endblock links%}
 
 {%block content%}
+
 <div class="mt-5 container" style="width: 50%;">
 
     <form method="POST">
@@ -25,7 +32,16 @@
             {{form.payed}}
             </select>
           </div>
-        <button type="submit" class="btn btn-warning">Update</button>
+          <div class="form-check form-switch">
+            {%if credit.etat%} 
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked disabled>
+            {%else%}
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" disabled>
+            {%endif%}
+            <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Payed</label>
+          </div>
+         
+        <button type="submit" class="btn btn-warning m-2">Update</button>
       </form>
 
 
@@ -34,15 +50,17 @@
 
       <div class="input-group mb-3">
         <button class="btn btn-outline-success" type="submit" id="button-addon1">Pay</button>
-        <input type="number" name='pay' class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" step="0.01">
+        <input type="number" name='pay' class="form-control" placeholder="" min = "0" aria-label="Example text with button addon" aria-describedby="button-addon1" step="0.01">
       </div>
     </form>
 
-
-  <a href={% url 'credit-produit' id%}><button type="submit" class="btn btn-info">Add Product</button></a>
+    <div class="input-group mb-3">
+      <a href={% url 'credit-produit' id%}><button type="submit"  class="btn btn-outline-info">Add Product</button></a>
+      <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
+    </div>
 
         <h2>Order History</h2>
-        <table id="product-table" class = "table">
+        <table id="productTable" class = "table">
             <thead>
               <tr>
                 <th>Product Name</th>

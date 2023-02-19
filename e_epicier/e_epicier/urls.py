@@ -37,11 +37,21 @@ urlpatterns = [
     path('credits/edit/<int:id>/', credit_views.creditEdit,name ='credit-edit'),
     path('credits/remove/<int:id>/', credit_views.creditDelete,name ='credit-remove'),
     path('credits/<int:id>/', credit_views.creditDetail,name ='credit-detail'),
+    path('credits/check/', credit_views.creditCheck,name ='credit-check'),
 
     path('credits/produits/<int:id>/', credit_views.creditProduits,name ='credit-produit'),
 
     path('credits/pay/<int:id>/', credit_views.creditPay,name ='credit-pay'),
     path('credits/', credit_views.creditView,name ='credit-view'),
+
+
+
+
+
+    path('/#about', user_views.aboutUs,name ='about-us'),
+    path('/#contact', user_views.contact_us,name ='contact-us'),
+    path('/#service', user_views.services,name ='services'),
+    path('/manage', user_views.manage,name ='manage'),
 
 
 
