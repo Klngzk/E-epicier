@@ -1,8 +1,30 @@
 {% extends "index.html" %}
 
 {%block content%}
-<p>{{produit.name}}</p>
-<p>{{produit.prix}}</p>
+
+<div class="mt-5 container" style="width: 50%;">
+    <legend>
+        Product Details
+    </legend>
+        <div class="list-group mb-3">
+            <div class="list-group-item list-group-item-action active" aria-current="true">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Name</h5>
+              </div>
+              <p class="mb-1" style='color:#102770;'>{{produit.name}}</p>
+            </div>
+    
+            <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Price</h5>
+                </div>
+                <p class="mb-1">{{produit.prix}}DH</p>
+            </div>
+              
+            <p class="mb-1">{{client.cin}}</p>
+            </div>
+        </div>
+    </div>
 
 
 {%endblock content%}

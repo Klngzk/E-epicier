@@ -24,23 +24,33 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegisterform()
-    return render(request,'users/register.html',{'form':form})
+    return render(request,'users/regi_log.html',{'form':form})
 # login page
 def loginpage(request):
+    print("asdsa")
+    username = request.POST.get('username2')
+    password = request.POST.get('password')
+    user = authenticate(request,username=username,password=password)
+    if user is not None:
+        login(request,user)
+        return redirect('home')
+    else:
+        messages.error(request, "Problem")
+    return render(request,'users/regi_log.html')
+
+def authenticatePage(request):
     if request.user.is_authenticated:
         messages.info(request,"You are already athenticated")
         return redirect('home')
-    # login logic
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request,username=username,password=password)
-        if user is not None:
-            login(request,user)
-            return redirect('home')
-        else:
-            messages.error(request, "Problem")
-    return render(request,'users/login.html')
+    if request.method == 'POST' and 'username2' in request.POST:
+        return loginpage(request)
+    elif request.method == 'POST':
+        print(request.POST)
+        return register(request)
+    else:
+        form = UserRegisterform()
+    return render(request,'users/regi_log.html',{'form':form})
+
 # logout 
 def logoutpage(request):
     logout(request)

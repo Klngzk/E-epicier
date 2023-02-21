@@ -22,4 +22,5 @@ class Qnt_Produit(models.Model):
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE,default=1)
     credit = models.ForeignKey(Credit,on_delete=models.CASCADE,default=1)
     qnt = models.PositiveIntegerField()
+    date = models.DateField(auto_now_add=True)
     total = models.DecimalField(max_digits=9, decimal_places=2)

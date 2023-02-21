@@ -1,7 +1,34 @@
 {% extends "index.html" %}
 
 {%block content%}
-<div class="mt-5 container" style="width: 50%;">
+
+<style>
+  /* Submit Button */
+  input,
+	.input-group {
+		display: block;
+		position: relative;
+		width: 100%;
+		height: 48px;
+	
+		border-radius: 8px;
+		border: 0px;
+		font-size: inherit;
+		box-sizing: border-box;
+	}
+	input[type="submit"] {
+		margin-top: 8px;
+		background-color: #ffeba7;
+		color: #102770;
+		cursor: pointer;
+	}
+	
+	input[type="submit"]:focus {
+		outline: none;
+	}
+	
+</style>
+<div class="mt-5 container" style="width: 24%;">
 
     <form method="POST">
         {% csrf_token %}
@@ -26,7 +53,7 @@
         </div>
 
 
-        <button type="submit" class="btn btn-success">Add</button>
+        <input value="Add" type="submit" />
       </form>
 
 </div>

@@ -34,36 +34,48 @@
           </div>
           <div class="form-check form-switch">
             {%if credit.etat%} 
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked disabled>
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" style="position: unset;" checked disabled>
             {%else%}
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" disabled>
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" style="position: unset;" disabled>
             {%endif%}
             <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Payed</label>
           </div>
-         
-        <button type="submit" class="btn btn-warning m-2">Update</button>
-      </form>
+      <div class='row mb-4 mt-4'>
+        <div class='col-lg-6'>   
+          <button type="submit" class="btn btn-outline-warning ">Update</button>
+        </form>
+        </div>
 
+        <div class='col-lg-6'>
+        <form method='POST' name='pay'>
+          {% csrf_token %}
+            <div class="input-group mb-3">
+              <button class="btn btn-outline-success" type="submit" id="button-addon1"><i class="fa-solid fa-money-bill-wave"></i>  Pay</button>
+              <input type="number" name='pay' class="form-control" placeholder="How much..." min = "0" aria-label="Example text with button addon" aria-describedby="button-addon1" step="0.01">
+            </div>
+            
+        </div>
+        </form>
 
-      <form method='POST' name='pay'>
-        {% csrf_token %}
-
-      <div class="input-group mb-3">
-        <button class="btn btn-outline-success" type="submit" id="button-addon1">Pay</button>
-        <input type="number" name='pay' class="form-control" placeholder="" min = "0" aria-label="Example text with button addon" aria-describedby="button-addon1" step="0.01">
+        <div class='col-lg-2' >
+          <a href={% url 'credit-produit' id%}><button type='button' class="btn btn-outline-info"><i class="fa-solid fa-bag-shopping"></i>  Add Products</button></a>
+        </div>
       </div>
-    </form>
+    
 
-    <div class="input-group mb-3">
-      <a href={% url 'credit-produit' id%}><button type="submit"  class="btn btn-outline-info">Add Product</button></a>
-      <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
-    </div>
-
-        <h2>Order History</h2>
+      <div class ='row mb-3'>  
+        <h2 class='col-lg-4'>Order History</h2> 
+        <div class='col'>
+        <input id="search-box"  type="text" class="search-box" name="q" />
+        <label for="search-box"><i class="fa-solid fa-magnifying-glass search-icon"></i></label>
+        <input type="submit" id="search-submit" />
+        </div>
+      </div>
         <table id="productTable" class = "table">
             <thead>
               <tr>
                 <th>Product Name</th>
+                <th>Date</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
@@ -73,6 +85,7 @@
               {% for produit in produits %}
               <tr>
                 <td>{{ produit.produit.name }}</td>
+                <td>{{ produit.date }}</td>
                 <td>{{ produit.produit.prix }}</td>
                 
                 <td name="quantity_{{ produit.produit.id }}">{{produit.qnt}}</td>
@@ -81,6 +94,7 @@
               </tr>
               {% endfor %}
               <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

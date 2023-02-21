@@ -10,6 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>E-epicier</title>
@@ -54,8 +55,9 @@ https://templatemo.com/tm-562-space-dynamic
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
-              <h4>E<span>-epicier</span></h4>
+            <a href="/" class="logo btn-shine">
+              {% comment %} <h4>E<span>-epicier</span></h4> {% endcomment %}
+                E-epicier
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
@@ -71,7 +73,7 @@ https://templatemo.com/tm-562-space-dynamic
               <li class="scroll-to-section"><div class="main-red-button"><a href="{% url 'logout'%}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></div></li> 
               {%else%}
               <li class="scroll-to-section" style="padding-right: 0;"><div class="main-blue-button"><a href="{% url 'login'%}" id="login-btn"><i class="fa-solid fa-user"></i>Login</a></div></li> 
-              <li class="scroll-to-section" style="padding-left: 13px;"><div class="main-red-button"><a href="{% url 'register'%}"><i class="fa-solid fa-user-plus"></i>Register</a></div></li> 
+              <li class="scroll-to-section" style="padding-left: 13px;"><div class="main-red-button"><a href="{% url 'login'%}"><i class="fa-solid fa-user-plus"></i>Register</a></div></li> 
               {%endif%}
     
               {%else%}
@@ -85,7 +87,7 @@ https://templatemo.com/tm-562-space-dynamic
               <li class="scroll-to-section"><div class="main-red-button"><a href="{% url 'logout'%}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></div></li> 
               {%else%}
               <li class="scroll-to-section" style="padding-right: 0;"><div class="main-blue-button"><a href="{% url 'login'%}" id="login-btn"><i class="fa-solid fa-user"></i>Login</a></div></li> 
-              <li class="scroll-to-section" style="padding-left: 13px;"><div class="main-red-button"><a href="{% url 'register'%}"><i class="fa-solid fa-user-plus"></i>Register</a></div></li> 
+              <li class="scroll-to-section" style="padding-left: 13px;"><div class="main-red-button"><a href="{% url 'login'%}"><i class="fa-solid fa-user-plus"></i>Register</a></div></li> 
               {%endif%}
 
               {%endif%}
@@ -101,6 +103,20 @@ https://templatemo.com/tm-562-space-dynamic
   </header>
   <!-- ***** Header Area End ***** -->
 
+{% comment %} Alert message {% endcomment %}
+
+{%if messages%}
+  {%for mess in messages%}
+      {%if mess.tags == 'error'%}
+          <div class="alert alert-danger" style="margin-bottom: 2rem;" role="alert">
+      {%else%}
+          <div class="alert alert-{{mess.tags}}" style="margin-bottom: 2rem;" role="alert">
+      {%endif%}
+              {{mess}}
+          </div>
+  {%endfor%}
+  {%endif%}
+
   {%block content%} {% endblock %}
 
   
@@ -113,7 +129,25 @@ https://templatemo.com/tm-562-space-dynamic
   <script src="{%static 'assets/js/animation.js'%}"></script>
   <script src="{%static 'assets/js/imagesloaded.js'%}"></script>
   <script src="{%static 'assets/js/templatemo-custom.js'%}"></script>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        // When the user types in the search input, filter the product table
+        $('#search-box').on('keyup', function() {
+          var value = $(this).val().toLowerCase();
+          $('#productTable tbody tr').filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
 
-
+        var grandTotal = 0;
+          var totals = document.querySelectorAll('.total');
+          for (var i = 0; i < totals.length; i++) {
+            grandTotal += parseFloat(totals[i].innerText);
+          }
+          document.querySelector('#grand-total').innerText = grandTotal+"DH";
+          console.log(grandTotal)
+      }); 
+</script>
 </body>
 </html>

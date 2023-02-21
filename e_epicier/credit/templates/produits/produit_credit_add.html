@@ -1,16 +1,23 @@
 {% extends "index.html" %}
 {%block content%}
-<form method="POST">
-  {% csrf_token %}
+
+
+
 <div class='container' style="width: 50%;">
-  <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
-    <table id="productTable" class = "table">
+
+  <form method="POST" class="mt-5">
+    {% csrf_token %}
+  <input id="search-box"  type="text" class="search-box" name="q" />
+  <label for="search-box"><i class="fa-solid fa-magnifying-glass search-icon"></i></label>
+  <input type="submit" id="search-submit" />
+
+    <table id="productTable" class = "table" style="width: 58%;">
         <thead>
           <tr>
             <th>Product Name</th>
-            <th>Price</th>
+            <th>Price(DH)</th>
             <th>Quantity</th>
-            <th>Total</th>
+            <th>Total(DH)</th>
           </tr>
         </thead>
         <tbody>
@@ -27,13 +34,20 @@
           
         </tbody>
       </table>
-      
-      <p>
+
+    <div class='row'>
+      <div class='col-lg-6'>
         Total: <input type="text" class="form-control"id="grand-total" value="" disabled>
-      </p>
-      <button class='btn btn-success' type="submit">Save</button>
-    </form>
-      
+      </div>
+    </div>
+  <button class='btn btn-success mt-3' type="submit">Save</button>
+  </form>
+
+
+
+
+
+  
       <script>
         function calculateTotal(input) {
           var row = input.parentElement.parentElement;
@@ -46,7 +60,7 @@
           for (var i = 0; i < totals.length; i++) {
             grandTotal += parseFloat(totals[i].innerText);
           }
-          document.querySelector('#grand-total').value = grandTotal;
+          document.querySelector('#grand-total').value = grandTotal+"DH";
         }
 
 

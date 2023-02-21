@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import  CreditForm,SelectedProductForm
 from .models import Credit,Qnt_Produit
 from .models import Produit
+from .models import Client
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -10,8 +11,9 @@ import decimal
 
 @login_required
 def creditAdd(request):
+    clients = Client.objects.filter(user=request.user)
     if request.method == 'POST':
-        form = CreditForm(request.POST)
+        form = CreditForm(request.POST,user=request.user)
         if form.is_valid():
             i = form.save(commit=False)
             i.user = request.user
@@ -21,31 +23,32 @@ def creditAdd(request):
             id_credit = i.id 
             return redirect('credit-produit', id= id_credit)
     else:
-        form = CreditForm()
+        form = CreditForm(user=request.user)
     return render(request,'credits/credit_add.html',{'form':form})
 
 @login_required
 def creditEdit(request,id):
     credit = Credit.objects.get(id=id)
     if check(credit,request): return redirect('home')
-    produits = Qnt_Produit.objects.filter(credit=id)
+    produits = Qnt_Produit.objects.filter(credit=id).order_by('-date')
     if request.method == 'POST' and 'pay' in request.POST:
+        print(request.POST)
         creditPay(request,id)
         credit = Credit.objects.get(id=id)
-        form = CreditForm(instance = credit)
+        form = CreditForm(user=request.user,instance = credit)
     elif request.method == 'POST':
-        form = CreditForm(request.POST,instance = credit)
+        form = CreditForm(request.POST,user=request.user,instance = credit)
         if form.is_valid():
             form.save()
             # messages.success(request, "Client has been Updated")
             return redirect('credit-view')
     else:
-        form = CreditForm(instance = credit)
+        form = CreditForm(user=request.user,instance = credit)
     return render(request,'credits/credit_edit.html',{'form':form,'produits':produits, 'id':id,'credit':credit})
 
 def creditDetail(request,id):
     credits = Credit.objects.get(id=id)
-    produits = Qnt_Produit.objects.filter(credit=id)
+    produits = Qnt_Produit.objects.filter(credit=id).order_by('-date')
     return render(request, 'credits/credit_detail.html',{'credits':credits,'produits':produits})
 
 @login_required
@@ -72,13 +75,18 @@ def creditProduits(request,id):
         credit.etat = 0
         credit.save()
         return creditView(request)
+    print("sad")
     return render(request,'produits/produit_credit_add.html',{'produits':produits})
 
 @login_required
 def creditPay(request,id):
     credit = Credit.objects.get(id=id)
     if check(credit,request): return redirect('home')
-    pay = decimal.Decimal(request.POST.get('pay'))
+    try:
+        pay = decimal.Decimal(request.POST.get('pay'))
+    except:
+        return messages.error(request,"Add a value to the payment input")
+
     to_pay = credit.to_pay
     if(pay > to_pay):
         return messages.error(request,"You are paying more than you need")

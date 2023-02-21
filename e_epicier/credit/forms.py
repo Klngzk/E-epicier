@@ -20,9 +20,12 @@ class CreditForm(forms.ModelForm):
             'client': forms.Select(attrs={'class': 'form-control'}),
             'titre': forms.TextInput(attrs={'class': 'form-control'}),
             'to_pay': forms.TextInput(attrs={'class': 'form-control','readonly': True}),
-            'payed': forms.TextInput(attrs={'class': 'form-control','readonly': True}),
-            
+            'payed': forms.TextInput(attrs={'class': 'form-control','readonly': True}),     
         }
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        self.fields['client'].queryset = Client.objects.filter(user=user)
 
 class SelectedProductForm(forms.ModelForm):
     class Meta:

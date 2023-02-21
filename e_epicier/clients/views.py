@@ -23,7 +23,13 @@ def clientEdit(request,id):
     if request.method == 'POST':
         form = ClientForm(request.POST,instance = client)
         if form.is_valid():
-            form.save()
+            i = form.save(commit=False)
+            try:
+                value = int(i.numero)
+            except ValueError:
+                messages.error(request, "Invalid Number")
+                return render(request,'clients/client_edit.html',{'form':form})
+            i.save()
             messages.success(request, "Client has been Updated")
             return redirect('client-view')
     else:
@@ -36,6 +42,11 @@ def clientAdd(request):
         form = ClientForm(request.POST)
         if form.is_valid():
             i = form.save(commit=False)
+            try:
+                value = int(i.numero)
+            except ValueError:
+                messages.error(request, "Invalid Number")
+                return render(request,'clients/client_add.html',{'form':form})
             i.user = request.user
             i.save()
             messages.success(request, "Client has been added")

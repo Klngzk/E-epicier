@@ -7,6 +7,6 @@ class ProduitForm(ModelForm):
         model = Produit
         fields = ['name','prix']
         widgets={
-            'name' : forms.TextInput(attrs={'class':'form-control'}),
-            'prix' : forms.TextInput(attrs={'class':'form-control'}),
+            'name' : forms.TextInput(attrs={'onkeyup':'this.setAttribute("value", this.value);','value':""}),
+            'prix' : forms.NumberInput(attrs={'onkeyup':'this.setAttribute("value", this.value);','value':"",'min':'0'}),
         }

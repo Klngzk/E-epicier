@@ -1,9 +1,39 @@
 {% extends "index.html" %}
 
 {%block content%}
-<p>{{client.firstname}}</p>
-<p>{{client.lastname}}</p>
-<p>{{client.numero}}</p>
-<p>{{client.cin}}</p>
 
+<div class="mt-5 container" style="width: 50%;">
+<legend>
+    Client Details
+</legend>
+    <div class="list-group mb-3">
+        <div class="list-group-item list-group-item-action active" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">First Name</h5>
+          </div>
+          <p class="mb-1" style='color:#102770;'>{{client.firstname}}</p>
+        </div>
+
+        <div class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Last Name</h5>
+            </div>
+            <p class="mb-1">{{client.lastname}}</p>
+        </div>
+          
+        <div class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Phone Number</h5>
+          </div>
+          <p class="mb-1">{{client.numero}}</p>
+        </div>
+
+        <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">CIN</h5>
+        </div>
+        <p class="mb-1">{{client.cin}}</p>
+        </div>
+    </div>
+</div>
 {%endblock content%}
