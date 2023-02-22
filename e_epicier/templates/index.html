@@ -47,7 +47,13 @@ https://templatemo.com/tm-562-space-dynamic
     </div>
   </div>
   <!-- ***** Preloader End ***** -->
-
+  {% if request.path != '/' or request.path != '/#about' or request.path != '/#services' or request.path != '/#contact' or request.path != '/#top' %}
+  <style>
+      header.header-area{
+        position:inherit;
+      }
+  </style>
+{% endif %}
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
     <div class="container">
