@@ -46,6 +46,22 @@ figure, header, nav, section, article, aside, footer, figcaption {
   outline: 0;
 }
 
+header + .container{
+  margin-top: 15%;
+}
+header + style + .container{
+  margin-top: 15%;
+}
+header + section{
+  margin-top: 15%;
+}
+
+header + div{
+  margin-top: 15%;
+}
+header + style + div{
+  margin-top: 15%;
+}
 /* clear fix */
 .grid:after {
   content: '';
@@ -533,6 +549,15 @@ header
 
 .header-area .main-nav .menu-trigger span {
   top: 16px;
+  background-color:#102770;
+}
+.header-area .main-nav .menu-trigger span:before {
+
+  background-color:#102770;
+}
+.header-area .main-nav .menu-trigger span:after {
+
+  background-color:#102770;
 }
 
 .header-area .main-nav .menu-trigger span:before {
@@ -616,7 +641,15 @@ header
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1400px) {
+  header + style + .container{
+    margin-top: 35%;
+    width: 50%;
+  }
+  header + .container{
+    margin-top: 25%;
+
+  }
   .background-header .main-nav .nav {
     margin-top: 80px !important;
   }
@@ -721,7 +754,7 @@ header
   }
 }
 
-@media (min-width: 767px) {
+@media (min-width: 1400px) {
   .header-area .main-nav .nav {
     display: flex !important;
   }
@@ -1082,10 +1115,10 @@ Portfolio
 --------------------------------------------- 
 */
 
-.our-portfolio {
-  /* padding-top: 120px; */
+/* .our-portfolio {
+  padding-top: 120px;
   margin-top: 33px;
-}
+} */
 
 .our-portfolio .section-heading h2 {
   text-align: center;
@@ -1695,6 +1728,7 @@ responsive
     position: absolute;
     bottom: -220px;
     right: 0;
+    display: none;
   }
   .about-us .services {
     text-align: center;

@@ -43,6 +43,7 @@
 	// Menu Dropdown Toggle
   if($('.menu-trigger').length){
     $(".menu-trigger").on('click', function() { 
+      console.log($('.menu-trigger').length);
       $(this).toggleClass('active');
       $('.header-area .nav').slideToggle(200);
     });

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>E-epicier</title>
-    {%block links%} {% endblock %}
+    {%block links%} {% endblock links%}
 
     <!-- Bootstrap core CSS -->
     <link href="{%static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -48,11 +48,11 @@ https://templatemo.com/tm-562-space-dynamic
   </div>
   <!-- ***** Preloader End ***** -->
   {% if request.path != '/' or request.path != '/#about' or request.path != '/#services' or request.path != '/#contact' or request.path != '/#top' %}
-  <style>
+  {% comment %} <style>
       header.header-area{
         position:inherit;
       }
-  </style>
+  </style> {% endcomment %}
 {% endif %}
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
@@ -135,7 +135,7 @@ https://templatemo.com/tm-562-space-dynamic
   <script src="{%static 'assets/js/animation.js'%}"></script>
   <script src="{%static 'assets/js/imagesloaded.js'%}"></script>
   <script src="{%static 'assets/js/templatemo-custom.js'%}"></script>
-  <script src="{%static 'assets/js/templatemo-custom.js'%}"></script>
+  <script src="{%static 'assets/intro.js'%}"></script>
   <script>
     $(document).ready(function() {
         // When the user types in the search input, filter the product table

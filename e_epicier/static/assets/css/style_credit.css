@@ -7,5 +7,7 @@ input.form-control:focus {
     border-color: #20c997;
   }
 
-
+header + .container{
+    width: 50%;
+}
   
