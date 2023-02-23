@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate , login ,logout
@@ -27,7 +27,6 @@ def register(request):
     return render(request,'users/regi_log.html',{'form':form})
 # login page
 def loginpage(request):
-    print("asdsa")
     username = request.POST.get('username2')
     password = request.POST.get('password')
     user = authenticate(request,username=username,password=password)
@@ -62,6 +61,7 @@ def services(request):
     return redirect('/#service')
 def contact_us(request):
     return redirect('/#contact')
+@login_required
 def manage(request):
     return render(request,'manage.html')
 

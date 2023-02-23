@@ -70,9 +70,9 @@ https://templatemo.com/tm-562-space-dynamic
             <ul class="nav">
               {%if request.path == '/'%}
               <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-              <li class="scroll-to-section"><a href="#about">About Us</a></li>
-              <li class="scroll-to-section"><a href="#services">Services</a></li>
-              <li class="scroll-to-section"><a href="#contact">Message Us</a></li>
+              <li class="scroll-to-section"><a href="#about">Services</a></li>
+              <li class="scroll-to-section"><a href="#services">About Us</a></li>
+              <li class="scroll-to-section"><a href="#contact">Contact Us</a></li>
               <li class="scroll-to-section"><a href="{% url 'credit-check'%}">Check Your Credit</a></li>  
               {%if user.is_authenticated %}  
               <li class="scroll-to-section"><a href="{% url 'manage'%}">Manage</a></li>
@@ -135,7 +135,7 @@ https://templatemo.com/tm-562-space-dynamic
   <script src="{%static 'assets/js/animation.js'%}"></script>
   <script src="{%static 'assets/js/imagesloaded.js'%}"></script>
   <script src="{%static 'assets/js/templatemo-custom.js'%}"></script>
-  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <script src="{%static 'assets/js/templatemo-custom.js'%}"></script>
   <script>
     $(document).ready(function() {
         // When the user types in the search input, filter the product table
