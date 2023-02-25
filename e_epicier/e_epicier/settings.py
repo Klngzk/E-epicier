@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_q6hms#4ji#s(laf=oe$fnuu6qj0vl6-*)6!^=@xtmvmcgg_d8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -86,6 +86,15 @@ DATABASES = {
         'HOST':'localhost',
         'PORT':'3306'
     }
+    # Production
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'railway',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'e4O8vTuW7N1JUaBTS2yg',
+    #     'HOST':'containers-us-west-112.railway.app',
+    #     'PORT':'7041'
+    # }
 }
 
 
