@@ -78,23 +78,23 @@ WSGI_APPLICATION = 'e_epicier.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'epicier',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST':'localhost',
-        'PORT':'3306'
-    }
-    # Production
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'railway',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'e4O8vTuW7N1JUaBTS2yg',
-    #     'HOST':'containers-us-west-112.railway.app',
-    #     'PORT':'7041'
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'epicier',
+    #     'USER': 'root',
+    #     'PASSWORD': 'admin',
+    #     'HOST':'localhost',
+    #     'PORT':'3306'
     # }
+    # Production
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'e4O8vTuW7N1JUaBTS2yg',
+        'HOST':'containers-us-west-112.railway.app',
+        'PORT':'7041'
+    }
 }
 
 

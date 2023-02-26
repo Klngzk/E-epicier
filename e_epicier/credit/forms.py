@@ -3,14 +3,7 @@ from .models import Qnt_Produit, Credit
 from produits.models import Produit
 from clients.models import Client
 
-# class Produit_QntForm(forms.ModelForm):
-#     class Meta:
-#         model = Qnt_Produit
-#         fields = ['produit', 'qnt']
-#         widgets = {
-#             'produit': forms.Select(attrs={'class': 'form-control'}),
-#             'qnt': forms.NumberInput(attrs={'class': 'form-control'}),
-#         }
+
 
 class CreditForm(forms.ModelForm):
     class Meta:
